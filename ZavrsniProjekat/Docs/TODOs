@@ -1,0 +1,12 @@
+
+[x] Check if every case is automated
+[ ] Finish date picker cases
+[ ] Create Cases for field acception - using colour data column.
+	[ ] Remove commented out test code from lines 129, 130 on TestZavrsni
+	[ ] Check field acception for name fields
+	[ ] Check field acception for email field
+	[ ] Check field acception for phone number field
+[ ] Create cases for entry deletetion
+[ ] Run test suite
+[ ] Add 'Status' column in Overview sheet
+[ ] Create bug reports and place them on a new sheet
