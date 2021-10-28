@@ -1,6 +1,8 @@
 
 [x] Check if every case is automated
+[ ] Check if data exists for all cases
 [ ] Finish date picker cases
+	[ ] Create cases for manual entry (without using the date picker)
 [ ] Create Cases for field acception - using colour data column.
 	[ ] Remove commented out test code from lines 129, 130 on TestZavrsni
 	[ ] Check field acception for name fields

@@ -29,7 +29,7 @@ public class BaseZavrsni {
 		driver = new ChromeDriver();
 		wait = new WebDriverWait(driver, 10);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		xcelReader = new ExcelReader("/Users/mladenimac/itbootcamp/zavrsniProjekat/TestData.xlsx");
+		xcelReader = new ExcelReader("/home/mmladenovic/git/itBootcampQAFinalProject/ZavrsniProjekat/Docs/TestData.xlsx");
 
 		homePageZavrsni = new HomePageZavrsni(driver, wait);
 		navBarZavrsni = new NavBarZavrsni(driver, wait);

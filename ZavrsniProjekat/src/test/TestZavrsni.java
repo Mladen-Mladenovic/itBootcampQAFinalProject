@@ -27,7 +27,7 @@ public class TestZavrsni extends BaseZavrsni {
 		assertEquals(driver.getCurrentUrl(), practiveFormsUrl); // Check if driver navigated to pracitce form url.
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void happyPathRequiredFieldsOnly() throws InterruptedException {
 		String firstName = xcelReader.getStringData("Data", 1, 1);
 		String lastName = xcelReader.getStringData("Data", 1, 2);
@@ -54,7 +54,7 @@ public class TestZavrsni extends BaseZavrsni {
 		assertEquals(driver.getCurrentUrl(), formUrl);// Check if page url after output popup is closed is the same as before output popup appeared.
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void happyPathAllFields() throws InterruptedException {
 		String firstName = xcelReader.getStringData("Data", 1, 1);
 		String lastName = xcelReader.getStringData("Data", 1, 2);
