@@ -124,7 +124,7 @@ public class TestZavrsni extends BaseZavrsni {
 		assertEquals(driver.getCurrentUrl(), formUrl); // Check if page url after output popup is closed is the same as before output popup appeared.
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void SignUpWithoutEntry() {
 //		String color = practiceFormZavrsni.getFirstNameField().getCssValue("border-color");
 //		System.out.println(color);

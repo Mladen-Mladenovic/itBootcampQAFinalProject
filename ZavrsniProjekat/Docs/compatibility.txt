@@ -1,0 +1,8 @@
+MacOS:
+	TestData = "/Users/mladenimac/itbootcamp/zavrsniProjekat/TestData.xlsx"
+	
+Ubuntu: 
+	TestData = "/home/mmladenovic/git/itBootcampQAFinalProject/ZavrsniProjekat/Docs/TestData.xlsx"
+
+NOTE:
+	Place correct version of the web driver in the driver-lib folder

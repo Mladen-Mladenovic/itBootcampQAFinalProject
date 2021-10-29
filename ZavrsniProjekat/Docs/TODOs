@@ -1,14 +1,17 @@
 
-[x] Check if every case is automated
-[ ] Check if data exists for all cases
-[ ] Finish date picker cases
-	[ ] Create cases for manual entry (without using the date picker)
-[ ] Create Cases for field acception - using colour data column.
-	[ ] Remove commented out test code from lines 129, 130 on TestZavrsni
-	[ ] Check field acception for name fields
-	[ ] Check field acception for email field
-	[ ] Check field acception for phone number field
-[ ] Create cases for entry deletetion
-[ ] Run test suite
-[ ] Add 'Status' column in Overview sheet
-[ ] Create bug reports and place them on a new sheet
+[ ] Merge env branches to update progress, don't forget so reset env variables.
+[x] Check if every case is automated.
+[x] Create a compatibility.txt doc to store paths and adjustments for different environments.
+[ ] Create a readme file .
+[x] Check if data exists for all cases.
+[x] Finish date picker cases.
+	[x] Create cases for manual entry (without using the date picker).
+[ ] Create Cases for field acception - using colour column in the Data sheet.
+	[ ] Remove commented out test code from lines 129, 130 on TestZavrsni.
+	[ ] Check field acception for name fields.
+	[ ] Check field acception for email field.
+	[ ] Check field acception for phone number field.
+[ ] Create cases for entry deletetion and reentry.
+[ ] Run test suite.
+[ ] Add 'Status' column in Overview sheet.
+[ ] Create bug reports and place them on a new sheet.
