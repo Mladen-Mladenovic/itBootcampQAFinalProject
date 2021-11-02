@@ -39,6 +39,6 @@ public class BaseZavrsni {
 	@AfterClass
 	public void tearDown() {
 		driver.manage().deleteAllCookies();
-		driver.close();
+		//driver.close();
 	}
 }

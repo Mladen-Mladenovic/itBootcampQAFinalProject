@@ -2,32 +2,32 @@
 <testng-results ignored="28" total="30" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-10-29T14:52:44 CEST" name="Default suite" finished-at="2021-10-29T14:52:54 CEST" duration-ms="9933">
+  <suite started-at="2021-11-01T15:53:30 CET" name="Default suite" finished-at="2021-11-01T15:53:39 CET" duration-ms="8342">
     <groups>
     </groups>
-    <test started-at="2021-10-29T14:52:44 CEST" name="Default test" finished-at="2021-10-29T14:52:54 CEST" duration-ms="9933">
+    <test started-at="2021-11-01T15:53:30 CET" name="Default test" finished-at="2021-11-01T15:53:39 CET" duration-ms="8342">
       <class name="test.TestZavrsni">
-        <test-method is-config="true" signature="setup()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-10-29T14:52:44 CEST" name="setup" finished-at="2021-10-29T14:52:45 CEST" duration-ms="1508" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-11-01T15:53:30 CET" name="setup" finished-at="2021-11-01T15:53:32 CET" duration-ms="1614" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="pageSetup()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-10-29T14:52:45 CEST" name="pageSetup" finished-at="2021-10-29T14:52:47 CEST" duration-ms="1975" status="PASS">
+        <test-method is-config="true" signature="pageSetup()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-11-01T15:53:32 CET" name="pageSetup" finished-at="2021-11-01T15:53:34 CET" duration-ms="2297" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- pageSetup -->
-        <test-method signature="happyPathAllFields()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-10-29T14:52:47 CEST" name="happyPathAllFields" finished-at="2021-10-29T14:52:50 CEST" duration-ms="2667" status="PASS">
+        <test-method signature="happyPathAllFields()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-11-01T15:53:34 CET" name="happyPathAllFields" finished-at="2021-11-01T15:53:37 CET" duration-ms="2691" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- happyPathAllFields -->
-        <test-method is-config="true" signature="pageSetup()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-10-29T14:52:50 CEST" name="pageSetup" finished-at="2021-10-29T14:52:51 CEST" duration-ms="818" status="PASS">
+        <test-method is-config="true" signature="pageSetup()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-11-01T15:53:37 CET" name="pageSetup" finished-at="2021-11-01T15:53:38 CET" duration-ms="847" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- pageSetup -->
-        <test-method signature="happyPathRequiredFieldsOnly()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-10-29T14:52:51 CEST" name="happyPathRequiredFieldsOnly" finished-at="2021-10-29T14:52:53 CEST" duration-ms="2869" status="PASS">
+        <test-method signature="happyPathRequiredFieldsOnly()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-11-01T15:53:38 CET" name="happyPathRequiredFieldsOnly" finished-at="2021-11-01T15:53:39 CET" duration-ms="802" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- happyPathRequiredFieldsOnly -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-10-29T14:52:53 CEST" name="tearDown" finished-at="2021-10-29T14:52:54 CEST" duration-ms="60" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:test.TestZavrsni@7ee955a8]" started-at="2021-11-01T15:53:39 CET" name="tearDown" finished-at="2021-11-01T15:53:39 CET" duration-ms="51" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
