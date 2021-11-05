@@ -2,10 +2,11 @@
 [ ] Merge env branches to update progress, don't forget so reset env variables.
 [x] Check if every case is automated.
 [x] Create a compatibility.txt doc to store paths and adjustments for different environments.
-[ ] Create a readme file .
+[x] Create a readme file .
 [x] Check if data exists for all cases.
 [x] Finish date picker cases.
 	[x] Create cases for manual entry (without using the date picker).
+[ ] Fix test at line 818 ( enterDateBeforeLastListed ) to check for last date listed ----------------------
 [ ] Create Cases for field acception - using colour column in the Data sheet.
 	[ ] Remove commented out test code from lines 129, 130 on TestZavrsni.
 	[ ] Check field acception for name fields.

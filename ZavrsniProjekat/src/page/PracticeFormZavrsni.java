@@ -4,6 +4,7 @@ import org.apache.poi.util.SystemOutLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -104,7 +105,7 @@ public class PracticeFormZavrsni {
 		getFirstNameField().clear();
 		getFirstNameField().sendKeys(firstName);
 	}
-	
+
 	public void clearFirstName() {
 		getFirstNameField().clear();
 	}
@@ -121,11 +122,11 @@ public class PracticeFormZavrsni {
 	public WebElement getMaleRadioButton() {
 		return driver.findElement(By.xpath("//input[@id='gender-radio-1']/.."));
 	}
-	
+
 	public WebElement getMaleRadioButtonSelection() {
 		return driver.findElement(By.cssSelector("input[value='Male']"));
 	}
-	
+
 	public void clickMaleRadioButton() {
 		getMaleRadioButton().click();
 	}
@@ -133,7 +134,7 @@ public class PracticeFormZavrsni {
 	public WebElement getFemaleRadioButton() {
 		return driver.findElement(By.xpath("//input[@id='gender-radio-2']/.."));
 	}
-	
+
 	public WebElement getFemaleRadioButtonSelection() {
 		return driver.findElement(By.cssSelector("input[value='Female']"));
 	}
@@ -149,7 +150,7 @@ public class PracticeFormZavrsni {
 	public WebElement getOtherRadioButtonSelection() {
 		return driver.findElement(By.cssSelector("input[value='Other']"));
 	}
-	
+
 	public void clickOtherRadioButton() {
 		getOtherRadioButton().click();
 	}
@@ -183,7 +184,8 @@ public class PracticeFormZavrsni {
 		// Returns date string extracted from web element in its original form.
 		if (format.equalsIgnoreCase("unfotmated")) {
 			return defaultDateOfBirth;
-			// Takes date extracted from web element and formats it to match the output format.
+			// Takes date extracted from web element and formats it to match the output
+			// format.
 		} else if (format.equalsIgnoreCase("formated")) {
 
 			return monthFormating(defaultDateOfBirth);
@@ -193,26 +195,46 @@ public class PracticeFormZavrsni {
 
 	}
 
-	public void enterDateOfBirth(String dateOfBirth) {
+	public void enterDateOfBirth(String dateOfBirth, String tool) {
+		/*
+		 * Takes data String and mode string. If mode string == "picker" date will be
+		 * entered using date picker If mode string == "manual" date will be entered by
+		 * sending keys directly to the date field.
+		 */
 		String day = dateOfBirth.split(" ")[0];
 		String month = dateOfBirth.split(" ")[1];
 		String year = dateOfBirth.split(" ")[2];
-		
-		getDatePickerField().click();
-		
-		WebElement yearPicker = driver.findElement(By.className("react-datepicker__year-select"));
-		yearPicker.click();
-		WebElement selectYear = driver.findElement(By.cssSelector("select[class='react-datepicker__year-select'] option[value='" + year + "']"));
-		selectYear.click();
-		
-		WebElement monthPicker = driver.findElement(By.className("react-datepicker__month-select"));
-		monthPicker.click();
-		WebElement selectMonth = driver.findElement(By.xpath("//select[@class='react-datepicker__month-select']/option[text()='" + month + "']"));
-		selectMonth.click();
-		
-		WebElement selectDay = driver.findElement(By.cssSelector("div[class='react-datepicker__day react-datepicker__day--0" + day + "']"));
-		selectDay.click();
-		
+
+		if (tool.contains("picker")) {
+			try {
+				getDatePickerField().click();
+				WebElement yearPicker = driver.findElement(By.className("react-datepicker__year-select"));
+				yearPicker.click();
+				WebElement selectYear = driver.findElement(
+						By.cssSelector("select[class='react-datepicker__year-select'] option[value='" + year + "']"));
+				selectYear.click();
+
+				WebElement monthPicker = driver.findElement(By.className("react-datepicker__month-select"));
+				monthPicker.click();
+				WebElement selectMonth = driver.findElement(
+						By.xpath("//select[@class='react-datepicker__month-select']/option[text()='" + month + "']"));
+				selectMonth.click();
+
+				WebElement selectDay = driver.findElement(
+						By.cssSelector("div[class='react-datepicker__day react-datepicker__day--0" + day + "']"));
+				selectDay.click();
+			} catch (Exception NoSuchElementException) {
+				System.out.println("Date not in the list of dates / not found");
+			}
+		} else if (tool.contains("manual")) {
+			getDatePickerField().sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+			getDatePickerField().sendKeys(dateOfBirth);
+		}
+
+	}
+
+	public String getBorderColor(WebElement element) {
+		return element.getCssValue("border-color");
 	}
 
 	public WebElement getSubjectsField() {
@@ -222,9 +244,11 @@ public class PracticeFormZavrsni {
 	public WebElement getSelectedSubjectsField() {
 		return driver.findElement(By.id("subjectsInput"));
 	}
+
 	public WebElement getSubjectAutocomplete(String subjects) {
 		return driver.findElement(By.xpath("//div[@tabindex='-1' and text()='" + subjects + "']"));
 	}
+
 	// TODO Create a list input option for multiple subject picks.
 	public void enterSubjects(String subjects) throws InterruptedException {
 		getSubjectsField().click();
@@ -235,7 +259,7 @@ public class PracticeFormZavrsni {
 	public WebElement getSubjectEntered(String subject) {
 		return driver.findElement(By.xpath("//div[text()='" + subject + "']"));
 	}
-	
+
 	public WebElement getSportsCheckbox() {
 		return driver.findElement(By.xpath("//input[@id='hobbies-checkbox-1']/.."));
 	}
@@ -243,7 +267,7 @@ public class PracticeFormZavrsni {
 	public void clickSportsCheckbox() {
 		getSportsCheckbox().click();
 	}
-	
+
 	public WebElement getSelectedSportsCheckbox() {
 		return driver.findElement(By.id("hobbies-checkbox-1"));
 	}
@@ -255,7 +279,7 @@ public class PracticeFormZavrsni {
 	public void clickReadingCheckbox() {
 		getReadingCheckbox().click();
 	}
-	
+
 	public WebElement getSelectedReadingCheckbox() {
 		return driver.findElement(By.id("hobbies-checkbox-2"));
 	}
@@ -267,7 +291,7 @@ public class PracticeFormZavrsni {
 	public void clickMusicCheckbox() {
 		getMusicCheckbox().click();
 	}
-	
+
 	public WebElement getSelectedMusicCheckbox() {
 		return driver.findElement(By.id("hobbies-checkbox-3"));
 	}
@@ -290,19 +314,20 @@ public class PracticeFormZavrsni {
 	}
 
 	public WebElement getStateButton() {
-		js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//div[text()='Select State']/.")));
+		js.executeScript("arguments[0].scrollIntoView();",
+				driver.findElement(By.xpath("//div[text()='Select State']/.")));
 		return driver.findElement(By.xpath("//div[text()='Select State']/."));
 	}
-	
+
 	public WebElement getStateDropdownElement(String state) {
 		return driver.findElement(By.xpath("//div[@id='react-select-3-option-0' and text()='" + state + "']"));
 	}
-	
+
 	public void enterState(String state) {
 		getStateButton().click();
 		getStateDropdownElement(state).click();
 	}
-	
+
 	public String getSelectedState() {
 		return driver.findElement(By.cssSelector("div#state div[class=' css-1uccc91-singleValue']")).getText();
 	}
@@ -310,11 +335,11 @@ public class PracticeFormZavrsni {
 	public WebElement getCityButton() {
 		return driver.findElement(By.cssSelector("div[class=' css-1wa3eu0-placeholder']"));
 	}
-	
+
 	public WebElement getCityDopdownElement(String city) {
 		return driver.findElement(By.xpath("//div[@tabindex='-1' and text()='" + city + "']"));
 	}
-	
+
 	public void enterCity(String city) {
 		getCityButton().click();
 		getCityDopdownElement(city).click();
@@ -323,7 +348,7 @@ public class PracticeFormZavrsni {
 	public String getSelectedCity() {
 		return driver.findElement(By.cssSelector("div#city div[class=' css-1uccc91-singleValue']")).getText();
 	}
-	
+
 	public WebElement getSubmitButton() {
 		js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//button[@id='submit']/..")));
 		return driver.findElement(By.xpath("//button[@id='submit']/.."));
@@ -336,43 +361,43 @@ public class PracticeFormZavrsni {
 	public WebElement getCloseButton() {
 		return driver.findElement(By.cssSelector("button#closeLargeModal"));
 	}
-	
+
 	public WebElement getAdCloseButton() {
 		return driver.findElement(By.id("close-fixedban"));
 	}
-	
+
 	public void clickCloseButton() {
 		wait.until(ExpectedConditions.elementToBeClickable(getCloseButton()));
 		try {
 			getAdCloseButton().click();
-		}catch(Error e){
-		
-		}finally {
+		} catch (Error e) {
+
+		} finally {
 			getCloseButton().click();
 		}
 	}
-	
+
 	public WebElement getInactiveBackground() {
 		return driver.findElement(By.xpath("//body"));
 	}
-	
+
 	public void clickOnInactiveBackground() {
 		getInactiveBackground().click();
 	}
-	
+
 	public WebElement outputDialog() {
 		return driver.findElement(By.className("modal-dialog modal-lg"));
 	}
-	
+
 	public boolean isOutputDialogDisplayed() {
 		try {
 			outputDialog().isDisplayed();
 			return true;
-		}catch (Exception NoSuchElementException){
+		} catch (Exception NoSuchElementException) {
 			return false;
 		}
 	}
-	
+
 	// Takes date string and changes the shortened month name to full.
 	public String monthFormating(String date) {
 		String formated = "";

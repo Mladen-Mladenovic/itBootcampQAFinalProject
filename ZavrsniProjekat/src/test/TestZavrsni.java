@@ -4,8 +4,10 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import java.io.File;
+import java.security.Key;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -27,7 +29,7 @@ public class TestZavrsni extends BaseZavrsni {
 		assertEquals(driver.getCurrentUrl(), practiveFormsUrl); // Check if driver navigated to pracitce form url.
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void happyPathRequiredFieldsOnly() throws InterruptedException {
 		String firstName = xcelReader.getStringData("Data", 1, 1);
 		String lastName = xcelReader.getStringData("Data", 1, 2);
@@ -54,7 +56,7 @@ public class TestZavrsni extends BaseZavrsni {
 		assertEquals(driver.getCurrentUrl(), formUrl);// Check if page url after output popup is closed is the same as before output popup appeared.
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void happyPathAllFields() throws InterruptedException {
 		String firstName = xcelReader.getStringData("Data", 1, 1);
 		String lastName = xcelReader.getStringData("Data", 1, 2);
@@ -82,7 +84,7 @@ public class TestZavrsni extends BaseZavrsni {
 		
 		practiceFormZavrsni.enterMobileNumber(mobileNumber);
 		
-		practiceFormZavrsni.enterDateOfBirth(dateOfBirth);
+		practiceFormZavrsni.enterDateOfBirth(dateOfBirth, "picker");
 		assertEquals(practiceFormZavrsni.getSelectedDateOfBirth("formated"), dateOfBirth); // Check if displayed date corresponds with picked date.
 		
 		practiceFormZavrsni.enterSubjects(subject);
@@ -126,12 +128,8 @@ public class TestZavrsni extends BaseZavrsni {
 
 	@Test(enabled = false)
 	public void SignUpWithoutEntry() {
-//		String color = practiceFormZavrsni.getFirstNameField().getCssValue("border-color");
-//		System.out.println(color);
 		practiceFormZavrsni.clickSubmitButton();
-		
 		assertTrue(!practiceFormZavrsni.isOutputDialogDisplayed()); // Check if output dialog is NOT displayed
-
 	}
 
 	@Test(enabled = false)
@@ -796,6 +794,90 @@ public class TestZavrsni extends BaseZavrsni {
 
 		assertTrue(!practiceFormZavrsni.isOutputDialogDisplayed());
 		assertEquals(driver.getCurrentUrl(), formUrl);
+	}
+	
+	@Test(enabled = false)
+	public void enterFutureDate () {
+		
+		String firstName = xcelReader.getStringData("Data", 1, 1);
+		String lastName = xcelReader.getStringData("Data", 1, 2);
+		String mobileNumber = String.valueOf(xcelReader.getIntData("Data", 1, 5));
+		String dateOfBirth = xcelReader.getStringData("Data", 2, 6);
+		
+		practiceFormZavrsni.enterFirstName(firstName);
+		practiceFormZavrsni.enterLastName(lastName);
+		practiceFormZavrsni.clickMaleRadioButton();
+		assertTrue(practiceFormZavrsni.getMaleRadioButtonSelection().isSelected()); // Check if Male radio button is selected
+
+		practiceFormZavrsni.enterMobileNumber(mobileNumber);
+		String borderColor = practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField()); // Check field border color before entering values.
+		practiceFormZavrsni.enterDateOfBirth(dateOfBirth, "picker");
+		practiceFormZavrsni.getInactiveBackground().click();
+		assertEquals(practiceFormZavrsni.getSelectedDateOfBirth("formated"), dateOfBirth); // Check if displayed date corresponds with entered date.
+		assertEquals(borderColor, practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField())); // Check field border color after entering values.
+	}
+	
+	@Test(enabled = false)
+	public void enterDateBeforeLastListed() {
+		// TODO: fix to check for last listed date 
+		
+		String firstName = xcelReader.getStringData("Data", 1, 1);
+		String lastName = xcelReader.getStringData("Data", 1, 2);
+		String mobileNumber = String.valueOf(xcelReader.getIntData("Data", 1, 5));
+		String dateOfBirth = xcelReader.getStringData("Data", 3, 6);
+		
+		practiceFormZavrsni.enterFirstName(firstName);
+		practiceFormZavrsni.enterLastName(lastName);
+		practiceFormZavrsni.clickMaleRadioButton();
+		assertTrue(practiceFormZavrsni.getMaleRadioButtonSelection().isSelected()); // Check if Male radio button is selected
+
+		practiceFormZavrsni.enterMobileNumber(mobileNumber);
+		String borderColor = practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField()); // Check field border color before entering values.
+		practiceFormZavrsni.enterDateOfBirth(dateOfBirth, "manual");
+		practiceFormZavrsni.getDatePickerField().sendKeys(Keys.ENTER);
+		assertEquals(practiceFormZavrsni.getSelectedDateOfBirth("formated"), dateOfBirth); // Check if displayed date corresponds with entered date.
+		assertEquals(borderColor, practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField())); // Check field border color after entering values.
+	}
+	
+	@Test(enabled = true)
+	public void enterInvalidMonth() {  
+		
+		String firstName = xcelReader.getStringData("Data", 1, 1);
+		String lastName = xcelReader.getStringData("Data", 1, 2);
+		String mobileNumber = String.valueOf(xcelReader.getIntData("Data", 1, 5));
+		String dateOfBirth = xcelReader.getStringData("Data", 6, 6);
+		
+		practiceFormZavrsni.enterFirstName(firstName);
+		practiceFormZavrsni.enterLastName(lastName);
+		practiceFormZavrsni.clickMaleRadioButton();
+		assertTrue(practiceFormZavrsni.getMaleRadioButtonSelection().isSelected()); // Check if Male radio button is selected
+
+		practiceFormZavrsni.enterMobileNumber(mobileNumber);
+		String borderColor = practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField()); // Check field border color before entering values.
+		practiceFormZavrsni.enterDateOfBirth(dateOfBirth, "manual");
+		practiceFormZavrsni.getDatePickerField().sendKeys(Keys.ENTER);
+		assertEquals(practiceFormZavrsni.getSelectedDateOfBirth("formated"), dateOfBirth); // Check if displayed date corresponds with entered date.
+		assertEquals(borderColor, practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField())); // Check field border color after entering values.
+	}
+	
+	@Test(enabled = true)
+	public void enterInvaldDay() {
+		String firstName = xcelReader.getStringData("Data", 1, 1);
+		String lastName = xcelReader.getStringData("Data", 1, 2);
+		String mobileNumber = String.valueOf(xcelReader.getIntData("Data", 1, 5));
+		String dateOfBirth = xcelReader.getStringData("Data", 4, 6);
+		
+		practiceFormZavrsni.enterFirstName(firstName);
+		practiceFormZavrsni.enterLastName(lastName);
+		practiceFormZavrsni.clickMaleRadioButton();
+		assertTrue(practiceFormZavrsni.getMaleRadioButtonSelection().isSelected()); // Check if Male radio button is selected
+
+		practiceFormZavrsni.enterMobileNumber(mobileNumber);
+		String borderColor = practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField()); // Check field border color before entering values.
+		practiceFormZavrsni.enterDateOfBirth(dateOfBirth, "manual");
+		practiceFormZavrsni.getDatePickerField().sendKeys(Keys.ENTER);
+		assertEquals(practiceFormZavrsni.getSelectedDateOfBirth("formated"), dateOfBirth); // Check if displayed date corresponds with entered date.
+		assertEquals(borderColor, practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField())); // Check field border color after entering values.
 	}
 	
 }
