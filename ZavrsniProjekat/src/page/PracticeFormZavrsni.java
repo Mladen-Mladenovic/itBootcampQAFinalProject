@@ -233,6 +233,54 @@ public class PracticeFormZavrsni {
 
 	}
 
+	public WebElement previousMonthArrow() {
+		return driver.findElement(By.cssSelector("button[aria-label = 'Previous Month']"));
+	}
+
+	public void clickPreviousMonthArrow() {
+		previousMonthArrow().click();
+	}
+
+	public WebElement nextMonthArrow() {
+		return driver.findElement(By.cssSelector("button[aria-label = 'Next Month']"));
+	}
+
+	public void clickNextMonthArrow() {
+		nextMonthArrow().click();
+	}
+
+	public WebElement getDatePickerHeader() {
+		return driver.findElement(By.cssSelector(
+				"div [class='react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown']"));
+	}
+
+	public String datePickerHeader(String option) {
+		String[] splited = getDatePickerHeader().getText().split(" ");
+		if (option.equals("month")) {
+			return splited[0];
+		} else if (option.equals("year")) {
+			return splited[1];
+		} else if (option.equals("full")) {
+			return getDatePickerHeader().getText();
+		} else {
+			System.out.println("Invalid option - enter \"month\", \"year\" or \"full\". ");
+			return "Invalid option - enter \"month\", \"year\" or \"full\". ";
+		}
+	}
+
+	public void changeYearWithArrows(String direction, String untilYear) {
+		String currentYear = getSelectedDateOfBirth("unformated");
+		if (direction.equals("back")) {
+			while (currentYear != untilYear) {
+				clickPreviousMonthArrow();
+			}
+		} else if (direction.equals("forward")) {
+			while (currentYear != untilYear) {
+				clickNextMonthArrow();
+			}
+		}
+	}
+
 	public String getBorderColor(WebElement element) {
 		return element.getCssValue("border-color");
 	}

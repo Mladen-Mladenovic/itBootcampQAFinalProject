@@ -8,6 +8,7 @@
 	[x] Create cases for manual entry (without using the date picker).
 [ ] Fix test at line 818 ( enterDateBeforeLastListed ) to check for last date listed ----------------------
 [ ] Create Cases for field acception - using colour column in the Data sheet.
+[ ] Update cases to check for field border color --------------
 	[ ] Remove commented out test code from lines 129, 130 on TestZavrsni.
 	[ ] Check field acception for name fields.
 	[ ] Check field acception for email field.

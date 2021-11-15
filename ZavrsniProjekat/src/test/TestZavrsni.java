@@ -839,7 +839,7 @@ public class TestZavrsni extends BaseZavrsni {
 		assertEquals(borderColor, practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField())); // Check field border color after entering values.
 	}
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void enterInvalidMonth() {  
 		
 		String firstName = xcelReader.getStringData("Data", 1, 1);
@@ -860,7 +860,7 @@ public class TestZavrsni extends BaseZavrsni {
 		assertEquals(borderColor, practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField())); // Check field border color after entering values.
 	}
 	
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void enterInvaldDay() {
 		String firstName = xcelReader.getStringData("Data", 1, 1);
 		String lastName = xcelReader.getStringData("Data", 1, 2);
@@ -880,4 +880,24 @@ public class TestZavrsni extends BaseZavrsni {
 		assertEquals(borderColor, practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField())); // Check field border color after entering values.
 	}
 	
+	@Test(enabled = true)
+	public void pickDateWithPickerArrows () {
+		String firstName = xcelReader.getStringData("Data", 1, 1);
+		String lastName = xcelReader.getStringData("Data", 1, 2);
+		String mobileNumber = String.valueOf(xcelReader.getIntData("Data", 1, 5));
+		
+		practiceFormZavrsni.enterFirstName(firstName);
+		practiceFormZavrsni.enterLastName(lastName);
+		practiceFormZavrsni.clickMaleRadioButton();
+		assertTrue(practiceFormZavrsni.getMaleRadioButtonSelection().isSelected()); // Check if Male radio button is selected
+
+		practiceFormZavrsni.enterMobileNumber(mobileNumber);
+		String borderColor = practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField()); // Check field border color before entering values.
+		String defaultDate = practiceFormZavrsni.getSelectedDateOfBirth("unformated");
+		practiceFormZavrsni.changeYearWithArrows("forward", "2020");
+		assertEquals(defaultDate, practiceFormZavrsni.getSelectedDateOfBirth("unformated"));
+		
+		
+		assertEquals(borderColor, practiceFormZavrsni.getBorderColor(practiceFormZavrsni.getDatePickerField()));  // Check field border color after entering values.
+	}
 }
